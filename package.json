@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Interactive Radon Transform Simulator - סימולציה אינטראקטיבית של התמרת ראדון",
   "main": "index.html",
-  "homepage": "https://your-username.github.io/radon-transform-simulator",
+  "homepage": "https://staviv.github.io/radon-transform-simulator",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/radon-transform-simulator.git"
+    "url": "https://github.com/staviv/radon-transform-simulator.git"
   },
   "scripts": {
     "start": "live-server . --port=3000",

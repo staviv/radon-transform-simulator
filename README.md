@@ -3,7 +3,7 @@
 An interactive Radon Transform simulation that allows users to explore the mathematical principles of this transformation in a visual and intuitive way.
 
 ## 🌟 Try it Now
-**[Click here to try the simulator](https://your-username.github.io/radon-transform-simulator/)**
+**[Click here to try the simulator](https://staviv.github.io/radon-transform-simulator/)**
 
 ## Key Features
 
@@ -31,7 +31,7 @@ Simply click the link above - the simulator runs directly in your browser!
 ### Local Setup
 1. **Clone the project**:
    ```bash
-   git clone https://github.com/your-username/radon-transform-simulator.git
+   git clone https://github.com/staviv/radon-transform-simulator.git
    cd radon-transform-simulator
    ```
 
