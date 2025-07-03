@@ -1,0 +1,36 @@
+{
+  "name": "radon-transform-simulator",
+  "version": "1.0.0",
+  "description": "Interactive Radon Transform Simulator - סימולציה אינטראקטיבית של התמרת ראדון",
+  "main": "index.html",
+  "homepage": "https://your-username.github.io/radon-transform-simulator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/radon-transform-simulator.git"
+  },
+  "scripts": {
+    "start": "live-server . --port=3000",
+    "dev": "live-server . --port=3000 --watch",
+    "build": "echo 'No build step required for static site'"
+  },
+  "keywords": [
+    "radon", 
+    "transform", 
+    "simulation", 
+    "visualization", 
+    "interactive", 
+    "mathematics",
+    "image-processing",
+    "canvas",
+    "javascript",
+    "hebrew"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/radon-transform-simulator/issues"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

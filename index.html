@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radon Transform Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>סימולציית Radon Transform</h1>
+            <p>הוסף צורות בצד שמאל וראה את התמרת הראדון בצד ימין</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h3>כלים</h3>
+                <div class="shape-buttons">
+                    <button id="add-ellipse" class="shape-btn active" data-shape="ellipse">אליפסה</button>
+                    <button id="add-rectangle" class="shape-btn" data-shape="rectangle">מלבן</button>
+                    <button id="add-triangle" class="shape-btn" data-shape="triangle">משולש</button>
+                    <button id="add-star" class="shape-btn" data-shape="star">כוכב</button>
+                    <button id="draw-mode" class="shape-btn" data-shape="draw">ציור חופשי</button>
+                </div>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="auto-update" checked>
+                            עדכון אוטומטי
+                        </label>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="show-grid" checked>
+                            הצגת רשת
+                        </label>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>גודל:</label>
+                        <input type="range" id="size-slider" min="10" max="100" value="30">
+                        <span id="size-value">30</span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>רוחב:</label>
+                        <input type="range" id="width-slider" min="10" max="150" value="30">
+                        <span id="width-value">30</span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>גובה:</label>
+                        <input type="range" id="height-slider" min="10" max="150" value="30">
+                        <span id="height-value">30</span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>סיבוב:</label>
+                        <input type="range" id="rotation-slider" min="0" max="360" value="0">
+                        <span id="rotation-value">0°</span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>עוצמה:</label>
+                        <input type="range" id="intensity-slider" min="0.1" max="2" step="0.1" value="1">
+                        <span id="intensity-value">1.0</span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>רזולוציה:</label>
+                        <select id="resolution-select">
+                            <option value="low">נמוכה (מהיר)</option>
+                            <option value="medium" selected>בינונית</option>
+                            <option value="high">גבוהה (איטי)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>שנה צורה נבחרת:</label>
+                        <select id="shape-type-select">
+                            <option value="">בחר צורה...</option>
+                            <option value="circle">עיגול</option>
+                            <option value="rectangle">ריבוע</option>
+                            <option value="triangle">משולש</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="info-panel">
+                    <h4>מידע</h4>
+                    <p id="shape-count">צורות: 0</p>
+                    <p id="selected-info">לא נבחרה צורה</p>
+                    <div id="shape-details" style="display: none;">
+                        <p>מיקום: <span id="position-info"></span></p>
+                        <p>גודל: <span id="size-info"></span></p>
+                        <p>סיבוב: <span id="rotation-info"></span></p>
+                        <p>עוצמה: <span id="intensity-info"></span></p>
+                    </div>
+                </div>
+                
+                <div class="help-panel">
+                    <h4>הנחיות</h4>
+                    <ul>
+                        <li>לחץ להוסיף צורה</li>
+                        <li>גרור בלי לעזוב כדי ליצור צורה</li>
+                        <li>Shift + לחיצה להוסיף צורה על צורה קיימת</li>
+                        <li>גרור צורה קיימת להזזה</li>
+                        <li>Ctrl + גרירה לסיבוב</li>
+                        <li>Delete למחיקת צורה נבחרת</li>
+                        <li>Ctrl+Z/Y לביטול/שחזור</li>
+                    </ul>
+                </div>
+                
+                <button id="clear-canvas" class="clear-btn">נקה הכל</button>
+            </div>
+            
+            <!-- Original Image Canvas -->
+            <div class="canvas-container">
+                <h3>תמונה מקורית</h3>
+                <canvas id="original-canvas" width="400" height="400"></canvas>
+                <div class="canvas-info">
+                    <p>לחץ להוספת צורה | גרור להזזה | Ctrl+גרור לסיבוב</p>
+                </div>
+            </div>
+            
+            <!-- Radon Transform Canvas -->
+            <div class="canvas-container">
+                <h3>Radon Transform</h3>
+                <canvas id="radon-canvas" width="400" height="400"></canvas>
+                <div class="canvas-info">
+                    <p>ציר X: מרחק ρ | ציר Y: זווית θ (0-180°)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="performance-indicator" class="performance-indicator">
+        <div>FPS: <span id="fps-counter">0</span></div>
+        <div>צורות: <span id="perf-shapes">0</span></div>
+        <div>רזולוציה: <span id="perf-resolution">בינונית</span></div>
+    </div>
+    
+    <script src="radon-transform.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
